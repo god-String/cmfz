@@ -23,7 +23,10 @@ spring:
     multipart:
       max-file-size: 50MB
       max-request-size: 100MB
-    #date-format: yyyy-MM-dd
+  redis:
+    host: 192.168.163.15
+    port: 6379
+  #date-format: yyyy-MM-dd
 #注册 实体类 别名  mapper
 mybatis:
   type-aliases-package: com.baizhi.zjy.entity
@@ -33,6 +36,6 @@ mybatis:
 logging:
   level:
     root: info
-    com.baizhi.zjy.dao: info
+    com.baizhi.zjy.dao: debug
     com.baizhi.zjy.service: info
     com.baizhi.zjy.controller: info

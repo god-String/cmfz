@@ -10,6 +10,7 @@ import com.alibaba.excel.metadata.property.ExcelContentProperty;
 import com.baizhi.zjy.dao.BannerDao;
 import com.baizhi.zjy.easypoi.BannerListener;
 import com.baizhi.zjy.entity.Banner;
+import com.baizhi.zjy.service.BannerService;
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,20 +38,14 @@ import java.util.*;
 public class BannerController {
         @Autowired
         BannerDao bannerDao;
+
+        @Autowired
+        BannerService bannerService;
+
         @RequestMapping("showAllBanners")
         public Map showAllBanners(Integer page,Integer rows){
-                // records 总条数 page 当前页 rows 数据 total 总页数
-                HashMap hashMap = new HashMap();
-                // bannerDao.selectCount(null); 不传入任何条件 查所有
-                Integer records = bannerDao.selectCount(null);
-                // 三目运算符 求总页数
-                Integer total = records%rows==0?records/rows:records/rows+1;
-                List<Banner> banners = bannerDao.selectByRowBounds(null, new RowBounds((page - 1) * rows, rows));
-                hashMap.put("records",records);
-                hashMap.put("page",page);
-                hashMap.put("total",total);
-                hashMap.put("rows",banners);
-                return hashMap;
+                Map allBanners = bannerService.getAllBanners(page, rows);
+                return allBanners;
         }
         @RequestMapping("editBanner")
         public Map editBanner(String oper,Banner banner,String[] id){

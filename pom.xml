@@ -169,12 +169,13 @@
                <version>0.3.8</version>
            </dependency>
 
+            <!-- 缓存机制 -->
            <!-- Redis -->
-           <!--<dependency>
+           <dependency>
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-starter-data-redis</artifactId>
                <version>1.5.20.RELEASE</version>
-           </dependency>-->
+           </dependency>
 
         <!-- EasyExcel 进行Excel的生成 -->
         <dependency>
